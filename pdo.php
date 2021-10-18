@@ -11,17 +11,22 @@ try {
 }
 
 // Daten aus Datenbank Abrufen 
-if (!empty($pdo)) {
-    // Daten Abrufen
-    $users = $pdo->query('SELECT firstname, lastname FROM users');
+function getUsers(){
+    global $pdo;
+    return $pdo->query('SELECT firstname, lastname FROM users');
+}
 
-    // Daten hinzufügen
-    $newUser = $pdo->query("INSERT INTO `users` (`firstname`,`lastname`,`email`,`password`) VALUES ('John','Doe','john@doe.de','test123')");
+function createUser(){
+    global $pdo;
+    $pdo->query("INSERT INTO `users` (`firstname`,`lastname`,`email`,`password`) VALUES ('John','Doe','john@doe.de','test123')");
+}
 
-    // Daten Löschen
-    $deletUser = $pdo->query("DELETE  FROM `users` WHERE firstname = 'John'");
+function deleteUser(){
+    global $pdo;
+    $pdo->query("DELETE  FROM `users` WHERE firstname = 'John'");
+}
 
-    // Daten updaten
-    $updateUser = $pdo->query("UPDATE `users` SET `password` = 'Neues Password' WHERE id = '1'");
-
+function updateUser(){
+    global $pdo;
+    $pdo->query("UPDATE `users` SET `password` = 'Neues Password' WHERE id = '1'");
 }

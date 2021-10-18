@@ -1,9 +1,7 @@
 <?php
 require_once __DIR__ . '/init.php';
-require_once __DIR__ . '/pdo.php';
 
-
-
+$users = getUsers();
 ?>
     <div>
         <h2>Useres</h2>
