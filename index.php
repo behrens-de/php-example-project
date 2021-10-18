@@ -3,9 +3,9 @@
 use User\UserDatabase;
 
 require_once __DIR__ . '/init.php';
-require_once __DIR__. '/User/UserDatabase.php';
+$userContainer = new \User\UserContainer();
 
-$userDB = new \User\UserDatabase($pdo);
+$userDB = $userContainer->setUserDatabase();
 $users = $userDB->getUsers();
 // $users = getUsers();
 

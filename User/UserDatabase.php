@@ -1,16 +1,16 @@
 <?php
 
 namespace User;
+use PDO;
+
 
 class UserDatabase
 {
-
     private $pdo;
 
-    public function __construct($pdo)
+    public function __construct(PDO $pdo)
     {
         $this->pdo = $pdo;
-        
     }
 
     // Daten aus Datenbank abrufen alle User

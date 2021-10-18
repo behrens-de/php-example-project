@@ -1,7 +1,8 @@
 <?php
 require_once __DIR__ . '/init.php';
+$userContainer = new \User\UserContainer();
 
-$userDB = new \User\UserDatabase($pdo);
+$userDB = $userContainer->setUserDatabase();
 $user = $userDB->getUser($_GET["uid"]);
 
 //createUser('Max','Muster','mm@testmail.ocm','test123','Ich bin der Max');
