@@ -2,11 +2,13 @@
 require_once __DIR__ . '/init.php';
 
 $users = getUsers();
+
+// deleteUser('Max');
 ?>
     <div>
-        <h2>Useres</h2>
+        <h2>Coole Benutzer aus der Datenbank!</h2>
         <?php foreach ($users as $user) : ?>
-            <h3><?= $user["firstname"]; ?></h3>
+            <a href="./user-details.php?uid=<?= $user["id"]; ?>"><?= $user["firstname"]; ?></a><br>
         <?php endforeach; ?>
     </div>
 
