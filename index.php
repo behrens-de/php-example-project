@@ -1,7 +1,13 @@
 <?php
-require_once __DIR__ . '/init.php';
 
-$users = getUsers();
+use User\UserDatabase;
+
+require_once __DIR__ . '/init.php';
+require_once __DIR__. '/User/UserDatabase.php';
+
+$userDB = new \User\UserDatabase($pdo);
+$users = $userDB->getUsers();
+// $users = getUsers();
 
 // deleteUser('Max');
 ?>
