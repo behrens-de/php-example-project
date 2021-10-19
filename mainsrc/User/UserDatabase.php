@@ -1,6 +1,7 @@
 <?php
 
 namespace App\User;
+use App\User\MVC\UserModel;
 use PDO;
 
 
@@ -16,9 +17,11 @@ class UserDatabase
     // Daten aus Datenbank abrufen alle User
     function getUsers()
     {
-        $users = $this->pdo->prepare('SELECT id, firstname, lastname FROM users');
+        $users = $this->pdo->prepare('SELECT id, firstname, lastname, bio FROM users');
         $users->execute();
-        return $users;
+        $users->setFetchMode(PDO::FETCH_CLASS, UserModel::class);
+        $usersdata = $users->fetchAll(PDO::FETCH_CLASS);
+        return $usersdata;
     }
 
     // Einen User aus Datenbank abrufen
@@ -28,7 +31,9 @@ class UserDatabase
         $user->execute([
             'userid' => $uid
         ]);
-        return $user->fetch();
+        $user->setFetchMode(PDO::FETCH_CLASS, UserModel::class);
+        $userdata = $user->fetchAll(PDO::FETCH_CLASS);
+        return $userdata;
     }
 
 
