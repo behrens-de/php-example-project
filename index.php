@@ -1,11 +1,10 @@
 <?php
 require_once __DIR__ . '/init.php';
 
-use App\User\UserContainer;
+use App\App\Container;
+$container = new Container();
 
-$userContainer = new UserContainer();
-
-$userDB = $userContainer->setUserDatabase();
+$userDB = $container->bulid('userDatabase');
 $users = $userDB->getUsers();
 // $users = getUsers();
 
