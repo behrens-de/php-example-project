@@ -1,9 +1,9 @@
 <?php
+require_once __DIR__ . '/init.php';
 
+use App\User\UserContainer;
 
-// require_once __DIR__ . '/init.php';
-require_once __DIR__.'/User/UserContainer.php';
-$userContainer = new \User\UserContainer();
+$userContainer = new UserContainer();
 
 $userDB = $userContainer->setUserDatabase();
 $users = $userDB->getUsers();

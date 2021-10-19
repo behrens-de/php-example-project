@@ -1,11 +1,11 @@
 <?php
 
-namespace User;
+namespace App\User;
 
-use \Connections\MySql;
+use App\Connections\MySql;
 
-require_once __DIR__.'/UserDatabase.php';
-require_once __DIR__.'/../Connections/MySql.php';
+// require_once __DIR__.'/UserDatabase.php';
+// require_once __DIR__.'/../Connections/MySql.php';
 
 class UserContainer
 {

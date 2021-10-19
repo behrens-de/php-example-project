@@ -1,6 +1,9 @@
 <?php
-require_once __DIR__.'/User/UserContainer.php';
-$userContainer = new \User\UserContainer();
+require_once __DIR__ . '/init.php';
+
+use App\User\UserContainer;
+
+$userContainer = new UserContainer();
 
 $userDB = $userContainer->setUserDatabase();
 $user = $userDB->getUser($_GET["uid"]);
