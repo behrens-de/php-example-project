@@ -1,20 +1,19 @@
 <?php
 
 namespace User;
-use PDO;
+
+use \Connections\MySql;
 
 require_once __DIR__.'/UserDatabase.php';
+require_once __DIR__.'/../Connections/MySql.php';
 
 class UserContainer
 {
 
     public function setPDO()
     {
-        require_once __DIR__.'/../dbconfig.php';
-        $pdo = new PDO('mysql:host=' . $db["host"] . ';dbname=' . $db["name"] . ';charset=utf8', $db["user"], $db["password"]);
-        // Schaltet die Emulierten Prepares aus 
-        $pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
-        return $pdo;
+        $connect = new MySql();
+        return $connect->db1();
     }
 
     public function setUserDatabase(){

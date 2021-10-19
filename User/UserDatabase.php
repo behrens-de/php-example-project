@@ -16,8 +16,9 @@ class UserDatabase
     // Daten aus Datenbank abrufen alle User
     function getUsers()
     {
-
-        return $this->pdo->query('SELECT id, firstname, lastname FROM users');
+        $users = $this->pdo->prepare('SELECT id, firstname, lastname FROM users');
+        $users->execute();
+        return $users;
     }
 
     // Einen User aus Datenbank abrufen
