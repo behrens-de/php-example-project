@@ -11,9 +11,9 @@ class UserModel{
     public $email;
     public $password;
     public $bio;
+	
 
-
-    public function hello($value = 'NULL'){
-        return 'Hallo '.$value;
+    public function hello(){
+        return 'Hallo '.$this->firstname;
     }
 }

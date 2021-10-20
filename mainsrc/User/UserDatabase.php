@@ -17,22 +17,22 @@ class UserDatabase
     // Daten aus Datenbank abrufen alle User
     function getUsers()
     {
-        $users = $this->pdo->prepare('SELECT id, firstname, lastname, bio FROM users');
+        $users = $this->pdo->prepare('SELECT * FROM users');
         $users->execute();
         $users->setFetchMode(PDO::FETCH_CLASS, UserModel::class);
-        $usersdata = $users->fetchAll(PDO::FETCH_CLASS);
+        $usersdata = $users->fetchAll();
         return $usersdata;
     }
 
     // Einen User aus Datenbank abrufen
     function getUser($uid)
     {
-        $user =  $this->pdo->prepare("SELECT id, firstname, lastname, bio FROM users WHERE id=:userid");
+        $user =  $this->pdo->prepare("SELECT * FROM users WHERE id=:userid");
         $user->execute([
             'userid' => $uid
         ]);
         $user->setFetchMode(PDO::FETCH_CLASS, UserModel::class);
-        $userdata = $user->fetchAll(PDO::FETCH_CLASS);
+        $userdata = $user->fetchAll();
         return $userdata;
     }
 

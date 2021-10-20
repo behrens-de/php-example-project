@@ -20,4 +20,4 @@ $userdata = $userDB->getUser($_GET["uid"]);
     <h2><?= $user->firstname; ?> <?= $user->lastname; ?></h2>
     <p><?= $user->bio; ?> </p>
     <?= $user->hello(); ?>
-<?php endforeach; ?>s
+<?php endforeach; ?>
