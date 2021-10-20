@@ -1,25 +1,35 @@
 <?php
 
 namespace App\User;
+
+use App\App\AbstractMVC\AbstractDatabase;
 use App\User\MVC\UserModel;
 use PDO;
 
 
-class UserDatabase
+class UserDatabase extends AbstractDatabase
 {
-    private $pdo;
 
-    public function __construct(PDO $pdo)
+    public function getTable()
     {
-        $this->pdo = $pdo;
+        return 'users';
+    }
+
+    public function getModel()
+    {
+        return UserModel::class;
+        
     }
 
     // Daten aus Datenbank abrufen alle User
     function getUsers()
     {
-        $users = $this->pdo->prepare('SELECT * FROM users');
+        $table = $this->getTable();
+        $model = $this->getModel();
+
+        $users = $this->pdo->prepare("SELECT * FROM $table");
         $users->execute();
-        $users->setFetchMode(PDO::FETCH_CLASS, UserModel::class);
+        $users->setFetchMode(PDO::FETCH_CLASS, $model);
         $usersdata = $users->fetchAll(PDO::FETCH_CLASS);
         return $usersdata;
     }
@@ -27,11 +37,14 @@ class UserDatabase
     // Einen User aus Datenbank abrufen
     function getUser($uid)
     {
-        $user =  $this->pdo->prepare("SELECT * FROM users WHERE id=:userid");
+        $table = $this->getTable();
+        $model = $this->getModel();
+
+        $user =  $this->pdo->prepare("SELECT * FROM $table WHERE id=:userid");
         $user->execute([
             'userid' => $uid
         ]);
-        $user->setFetchMode(PDO::FETCH_CLASS, UserModel::class);
+        $user->setFetchMode(PDO::FETCH_CLASS, $model);
         $userdata = $user->fetch(PDO::FETCH_CLASS);
         return $userdata;
     }
@@ -39,7 +52,9 @@ class UserDatabase
 
     function createUser($firstname, $lastname, $email, $password, $bio)
     {
-        $user = $this->pdo->prepare("INSERT INTO `users` (`firstname`,`lastname`,`email`,`password`,`bio`) VALUES (:firstname,:lastname,:email,:password,:bio)");
+        $table = $this->getTable();
+
+        $user = $this->pdo->prepare("INSERT INTO $table (`firstname`,`lastname`,`email`,`password`,`bio`) VALUES (:firstname,:lastname,:email,:password,:bio)");
         $user->execute([
             'firstname' => $firstname,
             'lastname' => $lastname,
@@ -51,7 +66,9 @@ class UserDatabase
 
     function deleteUser($firstname)
     {
-        $user = $this->pdo->prepare("DELETE  FROM `users` WHERE firstname = :firstname");
+        $table = $this->getTable();
+
+        $user = $this->pdo->prepare("DELETE  FROM $table WHERE firstname = :firstname");
         $user->execute([
             'firstname' => $firstname
         ]);
