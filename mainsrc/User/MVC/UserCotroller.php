@@ -14,8 +14,14 @@ class UserCotroller
         // $user = $userDB->getUser($_GET["uid"]);
     }
 
+    public function pageload($vars){
+        extract($vars); // https://www.php.net/manual/de/function.extract.php
+        require_once __DIR__.'/Views/user.php';
+    }
+
     public function userProfil($uid){
-        return $this->userDatabase->getUser($uid);
+        $user =  $this->userDatabase->getUser($uid);
+        $this->pageload(['user' => $user ]);
 
     }
 }
