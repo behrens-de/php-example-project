@@ -19,4 +19,10 @@ class UserCotroller extends AbstractController
         $user =  $this->userDatabase->getUser($uid);
         $this->pageload('User/MVC/Views/', 'user.php', ['user' => $user]);
     }
+
+    public function userList()
+    {
+        $users =  $this->userDatabase->getUsers();
+        $this->pageload('User/MVC/Views/', 'users.php', ['users' => $users]);
+    }    
 }
