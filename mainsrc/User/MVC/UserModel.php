@@ -6,7 +6,6 @@ use ArrayAccess;
 class UserModel implements ArrayAccess{
 
     // UserDatabase Splaten
-
     public $id;
     public $firstname;
     public $lastname;
@@ -15,7 +14,9 @@ class UserModel implements ArrayAccess{
     public $bio;
 
     // Functionen für das Interface ArrayAccess
-    public function offsetExists($offset){}
+    public function offsetExists($offset){
+        isset($this->offset);
+    }
     public function offsetGet($offset){
         return $this->$offset;
     }
