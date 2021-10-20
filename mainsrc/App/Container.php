@@ -5,6 +5,7 @@ namespace App\App;
 use App\Connections\MySql;
 use App\User\MVC\UserCotroller;
 use App\User\UserDatabase;
+use App\App\Router;
 
 class Container{
 
@@ -26,7 +27,15 @@ class Container{
 
             'userController' => function(){
                 return new UserCotroller($this->bulid('userDatabase'));
-            }
+            },
+
+            'router' => function(){
+                return new Router($this->bulid('container'));
+            },
+        
+            'container' => function(){
+                return $this;
+            }           
 
         ];
     }

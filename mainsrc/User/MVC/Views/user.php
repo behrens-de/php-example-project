@@ -1,6 +1,6 @@
 <h1>Detailseite eines coolen Benutzers</h1>
 <p>
-    <a href="./index.php">Zurück zur Startseite</a>
+    <a href="/php-example-project/">Zurück zur Startseite</a>
 </p>
 
 <?php if(!empty($user)) : ?>

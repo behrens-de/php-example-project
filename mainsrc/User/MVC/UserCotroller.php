@@ -14,8 +14,9 @@ class UserCotroller extends AbstractController
     }
 
 
-    public function userProfil($uid)
+    public function userProfil()
     {
+        $uid = $_GET["uid"];
         $user =  $this->userDatabase->getUser($uid);
         $this->pageload('User/MVC/Views/', 'user.php', ['user' => $user]);
     }
