@@ -20,7 +20,7 @@ class UserDatabase
         $users = $this->pdo->prepare('SELECT * FROM users');
         $users->execute();
         $users->setFetchMode(PDO::FETCH_CLASS, UserModel::class);
-        $usersdata = $users->fetchAll();
+        $usersdata = $users->fetchAll(PDO::FETCH_CLASS);
         return $usersdata;
     }
 
@@ -32,7 +32,7 @@ class UserDatabase
             'userid' => $uid
         ]);
         $user->setFetchMode(PDO::FETCH_CLASS, UserModel::class);
-        $userdata = $user->fetchAll();
+        $userdata = $user->fetch(PDO::FETCH_CLASS);
         return $userdata;
     }
 

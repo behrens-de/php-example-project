@@ -3,6 +3,7 @@
 namespace App\App;
 
 use App\Connections\MySql;
+use App\User\MVC\UserCotroller;
 use App\User\UserDatabase;
 
 class Container{
@@ -21,7 +22,12 @@ class Container{
             'pdo' => function(){
                 $connection = new MySql();
                 return $connection->db1();
+            },
+
+            'userController' => function(){
+                return new UserCotroller($this->bulid('userDatabase'));
             }
+
         ];
     }
 
