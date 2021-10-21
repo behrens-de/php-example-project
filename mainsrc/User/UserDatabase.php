@@ -50,14 +50,15 @@ class UserDatabase extends AbstractDatabase
     }
 
 
-    function createUser($firstname, $lastname, $email, $password, $bio)
+    function createUser($firstname, $lastname, $username, $email, $password, $bio)
     {
         $table = $this->getTable();
 
-        $user = $this->pdo->prepare("INSERT INTO $table (`firstname`,`lastname`,`email`,`password`,`bio`) VALUES (:firstname,:lastname,:email,:password,:bio)");
+        $user = $this->pdo->prepare("INSERT INTO $table (`firstname`,`lastname`,`username`,`email`,`password`,`bio`) VALUES (:firstname,:lastname,:username,:email,:password,:bio)");
         $user->execute([
             'firstname' => $firstname,
             'lastname' => $lastname,
+            'username' => $username,
             'email' => $email,
             'password' => $password,
             'bio' => $bio

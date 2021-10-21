@@ -8,6 +8,7 @@ require_once __DIR__ . '/../../../App/Design/header.php';
 
 <?php if(!empty($user)) : ?>
     <h2><?= $user->firstname; ?> <?= $user->lastname; ?></h2>
+    <h3>alias: <?= $user->username; ?></h3>
     <p><?= $user->bio; ?> </p>
     <?= $user->hello(); ?>
 <?php endif; ?>
