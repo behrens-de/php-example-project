@@ -6,9 +6,13 @@ $request = isset($_SERVER["PATH_INFO"]) ? $_SERVER["PATH_INFO"] : $_SERVER["REQU
 
 $router = $container->bulid('router');
 
-
 # Startseite
 if($request == '/php-example-project/')
+{
+    $router->add('indexController', 'home');   
+} 
+# UserListe
+elseif($request == '/users')
 {
     $router->add('userController', 'userList');   
 } 

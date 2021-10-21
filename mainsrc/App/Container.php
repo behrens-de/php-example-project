@@ -7,6 +7,8 @@ use App\User\MVC\UserCotroller;
 use App\User\UserDatabase;
 use App\App\Router;
 use App\Error\MVC\ErrorController;
+use App\Home\IndexDatabase;
+use App\Home\MVC\IndexController;
 
 class Container{
 
@@ -17,15 +19,21 @@ class Container{
     public function __construct()
     {
         $this->builds = [
-            'userDatabase' => function(){
-                return new UserDatabase($this->bulid('pdo'));
-            },
-
+            /**
+             * Databases
+             */
             'pdo' => function(){
                 $connection = new MySql();
-                return $connection->db1();
-            },
+                return $connection->db1();},
 
+            'userDatabase' => function(){
+                return new UserDatabase($this->bulid('pdo'));},
+
+            'indexDatabase' => function(){
+                return new IndexDatabase($this->bulid('pdo'));},
+            /**
+             * Controller
+             */
             'userController' => function(){
                 return new UserCotroller($this->bulid('userDatabase'));
             },
@@ -34,10 +42,18 @@ class Container{
                 return new ErrorController();
             },
 
+            'indexController' => function(){
+                return new IndexController($this->bulid('indexDatabase'));
+            },
+            /**
+             * Router
+             */
             'router' => function(){
                 return new Router($this->bulid('container'));
             },
-        
+            /**
+             * Container
+             */
             'container' => function(){
                 return new Container();
             }           
