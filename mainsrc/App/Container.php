@@ -9,6 +9,7 @@ use App\App\Router;
 use App\Error\MVC\ErrorController;
 use App\Home\IndexDatabase;
 use App\Home\MVC\IndexController;
+use App\Register\MVC\RegisterController;
 
 class Container{
 
@@ -44,6 +45,10 @@ class Container{
 
             'indexController' => function(){
                 return new IndexController($this->bulid('indexDatabase'));
+            },
+
+            'registerController' => function(){
+                return new RegisterController($this->bulid('userDatabase'));
             },
             /**
              * Router
