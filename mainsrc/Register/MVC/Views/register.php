@@ -1,6 +1,11 @@
 <?php
 require_once __DIR__ . '/../../../App/Design/header.php';
 ?>
+<?php if ($fail !== null) : ?>
+    <div class="container col-6 my-3 alert alert-danger" role="alert">
+        <?= $fail; ?>
+    </div>
+<?php endif; ?>
 
 <div class="container col-6 my-5">
     <h2 class="h2 my-5">Regestriere Dich!</h2>

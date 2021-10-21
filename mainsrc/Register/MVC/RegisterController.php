@@ -16,7 +16,7 @@ class RegisterController extends AbstractController
     #2: Register rendern (View)
     public function register()
     {
-        var_dump($_POST);
+        $fail = null;
 
         if(!empty($_POST)){
             $firstname = $_POST["firstname"];
@@ -26,10 +26,14 @@ class RegisterController extends AbstractController
             $password = $_POST["password"];
             $submit = $_POST["submit"];
 
-            $create = $this->userDatabase->createUser($firstname, $lastname, $username, $email, $password, 'Eine kleine Kurzgeschichte');
-            var_dump($create);
+            // Wenn alles leer ist!
+            if(empty($firstname AND $lastname AND $username AND $email AND $password)){
+                $fail = 'Bitte fülle alle Felder aus!';
+            } else{
+                $this->userDatabase->createUser($firstname, $lastname, $username, $email, $password, 'Eine kleine Kurzgeschichte');
+            }
         }
 
-        $this->pageload('Register/MVC/Views/', 'register.php', []);
+        $this->pageload('Register/MVC/Views/', 'register.php', ['fail'=>$fail]);
     }
 }
