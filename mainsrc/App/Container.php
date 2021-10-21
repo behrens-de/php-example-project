@@ -6,6 +6,7 @@ use App\Connections\MySql;
 use App\User\MVC\UserCotroller;
 use App\User\UserDatabase;
 use App\App\Router;
+use App\Error\MVC\ErrorController;
 
 class Container{
 
@@ -29,12 +30,16 @@ class Container{
                 return new UserCotroller($this->bulid('userDatabase'));
             },
 
+            'errorController' => function(){
+                return new ErrorController();
+            },
+
             'router' => function(){
                 return new Router($this->bulid('container'));
             },
         
             'container' => function(){
-                return $this;
+                return new Container();
             }           
 
         ];
