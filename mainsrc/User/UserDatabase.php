@@ -49,6 +49,20 @@ class UserDatabase extends AbstractDatabase
         return $userdata;
     }
 
+     // holt user aus der Datenbank by Email
+     function getUserByEmail($email)
+     {
+         $table = $this->getTable();
+         $model = $this->getModel();
+ 
+         $user =  $this->pdo->prepare("SELECT `email` FROM $table WHERE email=:email");
+         $user->execute([
+             'email' => $email
+         ]);
+         $user->setFetchMode(PDO::FETCH_CLASS, $model);
+         $userdata = $user->fetch(PDO::FETCH_CLASS);
+         return $userdata;
+     }   
 
     function createUser($firstname, $lastname, $username, $email, $password, $bio)
     {

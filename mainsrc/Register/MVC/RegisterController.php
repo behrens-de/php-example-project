@@ -30,7 +30,15 @@ class RegisterController extends AbstractController
             if(empty($firstname AND $lastname AND $username AND $email AND $password)){
                 $fail = 'Bitte fülle alle Felder aus!';
             } else{
-                $this->userDatabase->createUser($firstname, $lastname, $username, $email, $password, 'Eine kleine Kurzgeschichte');
+                $user =$this->userDatabase->getUserByEmail($email);
+
+                if(empty($user)){
+                    $passwordHash = password_hash($password, PASSWORD_DEFAULT);
+                    $this->userDatabase->createUser($firstname, $lastname, $username, $email, $passwordHash, 'Eine kleine Kurzgeschichte');
+                } else {
+                    $fail = 'User existiert schon';
+                }
+
             }
         }
 
