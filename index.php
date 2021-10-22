@@ -24,6 +24,11 @@ elseif($request == '/users=user'){
 elseif($request == '/register'){
     $router->add('registerController', 'register');
 } 
+# Register Seite
+elseif($request == '/login'){
+    $router->add('loginController', 'login');
+} 
+
 # 404 Fehlerseite (Default)
 else {
     $router->add('errorController', 'error404');

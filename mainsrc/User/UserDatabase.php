@@ -64,6 +64,21 @@ class UserDatabase extends AbstractDatabase
          return $userdata;
      }   
 
+     #check userLogin
+     function getUserByEmailOrUsername($input)
+     {
+         $table = $this->getTable();
+         $model = $this->getModel();
+ 
+         $user =  $this->pdo->prepare("SELECT * FROM $table WHERE username=:input");
+         $user->execute([
+             'input' => $input
+         ]);
+         $user->setFetchMode(PDO::FETCH_CLASS, $model);
+         $userdata = $user->fetch(PDO::FETCH_CLASS);
+         return $userdata;
+     }      
+
     function createUser($firstname, $lastname, $username, $email, $password, $bio)
     {
         $table = $this->getTable();

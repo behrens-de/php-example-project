@@ -9,6 +9,8 @@ use App\App\Router;
 use App\Error\MVC\ErrorController;
 use App\Home\IndexDatabase;
 use App\Home\MVC\IndexController;
+use App\Login\MVC\LoginAuth;
+use App\Login\MVC\LoginController;
 use App\Register\MVC\RegisterController;
 
 class Container{
@@ -49,6 +51,14 @@ class Container{
 
             'registerController' => function(){
                 return new RegisterController($this->bulid('userDatabase'));
+            },
+
+            'loginController' => function(){
+                return new LoginController($this->bulid('loginAuth'));
+            },
+
+            'loginAuth' => function(){
+                return new LoginAuth($this->bulid('userDatabase'));
             },
             /**
              * Router
