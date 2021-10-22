@@ -55,7 +55,7 @@ class Container{
             },
 
             'loginController' => function(){
-                return new LoginController($this->bulid('userDatabase'));
+                return new LoginController($this->bulid('loginAuth'));
             },
 
             'loginAuth' => function(){

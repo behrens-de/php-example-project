@@ -17,7 +17,7 @@
 
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container-fluid">
-      <a class="navbar-brand" href="/php-example-project">Example Page</a>
+      <a class="navbar-brand" href="/php-example-project">Happy Panda</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -28,10 +28,13 @@
           </li>
         </ul>
         <form class="d-flex">
-
-          <a class="btn btn-primary mx-2" href="/php-example-project/login">Login</a>
-          <a class="btn btn-outline-secondary" href="/php-example-project/register">Register</a>
-
+          <?php if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true) : ?>
+            <a class="btn btn-primary mx-2" href="/php-example-project/userdashboard">Dashboard</a>
+            <a class="btn btn-outline-secondary" href="/php-example-project/logout">Abmelden</a>
+          <?php else: ?>
+            <a class="btn btn-primary mx-2" href="/php-example-project/login">Login</a>
+            <a class="btn btn-outline-secondary" href="/php-example-project/register">Register</a>
+          <?php endif; ?>
         </form>
       </div>
     </div>

@@ -25,16 +25,12 @@ class LoginController extends AbstractController
             $login = $this->loginAuth->checkLogin($username, $password);
        
             if($login){
-                header("Location: /php-example-project/users");
+                header("Location: /php-example-project/userdashboard");
             } else {
                 $error = 'Login ist Fehlgeschlagen';
             }
 
         }
-
-
-
-
         $this->pageload('Login/MVC/Views/', 'login.php', ['error'=>$error]);
     }
 }

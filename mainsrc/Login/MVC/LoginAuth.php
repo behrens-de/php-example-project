@@ -12,13 +12,24 @@ class LoginAuth
         $this->userDatabase = $userDatabase;
     }
 
-    public function checkLogin(string $input, string $password) : bool
+    public function checkLogin(string $input, string $password): bool
     {
         # prüft ob er einen User findet 
         $user = $this->userDatabase->getUserByEmailOrUsername($input);
         if ($user) {
             #checkt ob das passwort zum Hash passwort in Datenbank passst
-            return password_verify($password, $user->password) ? true: false;
+            $verify = password_verify($password, $user->password) ? true : false;
+
+            if ($verify) {
+                # prevent session hijacking
+                session_regenerate_id(true);
+
+                #SET SESSION USERID
+                $_SESSION['userid'] = $user->id;
+                $_SESSION['loggedin'] = true;
+            }
+
+            return $verify;
         }
         return false;
     }
