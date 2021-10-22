@@ -12,6 +12,7 @@ use App\Home\MVC\IndexController;
 use App\Login\MVC\LoginAuth;
 use App\Login\MVC\LoginController;
 use App\Register\MVC\RegisterController;
+use App\UserDashboard\MVC\UserDashboardController;
 
 class Container{
 
@@ -54,11 +55,15 @@ class Container{
             },
 
             'loginController' => function(){
-                return new LoginController($this->bulid('loginAuth'));
+                return new LoginController($this->bulid('userDatabase'));
             },
 
             'loginAuth' => function(){
                 return new LoginAuth($this->bulid('userDatabase'));
+            },
+
+            'dashboardController' => function(){
+                return new UserDashboardController($this->bulid('userDatabase'));
             },
             /**
              * Router

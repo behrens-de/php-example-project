@@ -1,4 +1,5 @@
 <?php
+session_start();
 require_once __DIR__ . '/init.php';
 
 
@@ -24,9 +25,14 @@ elseif($request == '/users=user'){
 elseif($request == '/register'){
     $router->add('registerController', 'register');
 } 
-# Register Seite
+# Login Seite
 elseif($request == '/login'){
     $router->add('loginController', 'login');
+} 
+
+# User Dashboard Seite
+elseif($request == '/userdashboard'){
+    $router->add('dashboardController', 'userDashboardMain');
 } 
 
 # 404 Fehlerseite (Default)
