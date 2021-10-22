@@ -1,8 +1,10 @@
 <?php
 session_start();
 require_once __DIR__ . '/init.php';
+# var_dump($_SESSION);
 
 
+var_dump(bin2hex(time().random_bytes(12)));
 /**
  * Routing
  */
@@ -33,6 +35,12 @@ elseif($request == '/login'){
 # User Dashboard Seite
 elseif($request == '/userdashboard'){
     $router->add('dashboardController', 'userDashboardMain');
+} 
+
+elseif($request == '/logout'){
+    #todo: schöner machen
+    session_destroy();
+    header("Location: php-example-project/");
 } 
 
 # 404 Fehlerseite (Default)
