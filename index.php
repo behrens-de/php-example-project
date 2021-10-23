@@ -46,8 +46,8 @@ elseif($request == '/photoalben'){
 } 
 
 # User Photoalben
-elseif($request == '/photoalben/albumid='){
-    $router->add('photoAlbenController', 'photoAlben');
+elseif($request == '/photoalben/settings'){
+    $router->add('photoAlbenController', 'settings');
 } 
 
 # 404 Fehlerseite (Default)

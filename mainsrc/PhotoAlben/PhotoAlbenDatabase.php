@@ -29,4 +29,16 @@ class PhotoAlbenDatabase extends AbstractDatabase
         $albendata = $alben->fetchAll(PDO::FETCH_CLASS);
         return $albendata;
     }
+
+    public function getAlbenById($id)
+    {
+        $table = $this->getTable();
+        $model = $this->getModel();
+
+        $alben = $this->pdo->prepare("SELECT * FROM $table WHERE id=$id");
+        $alben->execute();
+        $alben->setFetchMode(PDO::FETCH_CLASS, $model);
+        $albendata = $alben->fetch(PDO::FETCH_CLASS);
+        return $albendata;
+    }
 }
