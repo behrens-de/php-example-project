@@ -34,11 +34,20 @@ elseif($request == '/login'){
 elseif($request == '/userdashboard'){
     $router->add('dashboardController', 'userDashboardMain');
 } 
-
+# User Logout
 elseif($request == '/logout'){
     #todo: schöner machen
     session_destroy();
     header("Location: php-example-project/");
+} 
+# User Photoalben
+elseif($request == '/photoalben'){
+    $router->add('photoAlbenController', 'photoAlben');
+} 
+
+# User Photoalben
+elseif($request == '/photoalben/albumid='){
+    $router->add('photoAlbenController', 'photoAlben');
 } 
 
 # 404 Fehlerseite (Default)

@@ -8,7 +8,7 @@ require_once __DIR__ . '/../../../App/Design/header.php';
 <?php endif; ?>
 
 <div class="container col-6 my-5">
-    <h2 class="h2 my-5">Regestriere Dich!</h2>
+    <h2 class="h2 my-5">Registriere Dich!</h2>
     <form method="post" action="">
 
         <div class="row">

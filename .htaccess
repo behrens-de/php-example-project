@@ -10,5 +10,3 @@ RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule ^(.*)/? /php-example-project/index.php/$1 [L,QSA,NC]
 
 Options +Multiviews
-
-# Znamify 

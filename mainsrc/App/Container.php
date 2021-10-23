@@ -11,6 +11,8 @@ use App\Home\IndexDatabase;
 use App\Home\MVC\IndexController;
 use App\Login\MVC\LoginAuth;
 use App\Login\MVC\LoginController;
+use App\PhotoAlben\MVC\PhotoAlbenController;
+use App\PhotoAlben\PhotoAlbenDatabase;
 use App\Register\MVC\RegisterController;
 use App\UserDashboard\MVC\UserDashboardController;
 
@@ -32,6 +34,10 @@ class Container
                 return $connection->db1();
             },
 
+            'photoAlbenDatabase' => function () {
+                return new PhotoAlbenDatabase($this->build('pdo'));
+            },
+
             'userDatabase' => function () {
                 return new UserDatabase($this->build('pdo'));
             },
@@ -44,6 +50,11 @@ class Container
             /**
              * Controller
              */
+
+            'photoAlbenController' => function () {
+                return new PhotoAlbenController($this->build('photoAlbenDatabase'));
+            },
+
             'userController' => function () {
                 return new UserCotroller($this->build('userDatabase'));
             },
