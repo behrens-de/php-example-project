@@ -9,7 +9,6 @@ use App\App\Router;
 use App\Error\MVC\ErrorController;
 use App\Home\IndexDatabase;
 use App\Home\MVC\IndexController;
-use APP\KeepLogin\KeepLoginDatabase;
 use App\Login\MVC\LoginAuth;
 use App\Login\MVC\LoginController;
 use App\Register\MVC\RegisterController;
@@ -41,9 +40,6 @@ class Container
                 return new IndexDatabase($this->build('pdo'));
             },
 
-            'keepLoginDatabase' => function () {
-                return new KeepLoginDatabase($this->build('pdo'));
-            },
 
             /**
              * Controller
@@ -69,10 +65,7 @@ class Container
             },
 
             'loginAuth' => function () {
-                return new LoginAuth(
-                    $this->build('userDatabase'),
-                    $this->build('keepLoginDatabase')
-                );
+                return new LoginAuth($this->build('userDatabase'));
             },
 
             'dashboardController' => function () {
