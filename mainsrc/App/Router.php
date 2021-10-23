@@ -10,7 +10,7 @@ class Router{
     }
 
     public function add($controller, $method){
-        $container = $this->container->bulid($controller);
+        $container = $this->container->build($controller);
         $view = $method;
         $this->build($container, $view);
     }

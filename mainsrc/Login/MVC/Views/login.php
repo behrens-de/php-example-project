@@ -21,6 +21,12 @@
         <label for="exampleInputPassword1" class="form-label">Password</label>
         <input type="password" class="form-control" name="password">
     </div>
+    <div class="mb-3">
+        <input class="form-check-input" type="checkbox" value="checked" name="stayLogin" id="stayLogin">
+        <label class="form-check-label" for="stayLogin">
+            Angemeldet bleiben
+        </label>
+    </div>
 
     <button type="submit" class="btn btn-primary">Submit</button>
 </form>

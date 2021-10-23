@@ -19,8 +19,14 @@ class LoginController extends AbstractController
         if (!empty($_POST)) {
             // $username = 'coco-schmoko';
             // $password = 'schmoko123';
+
+            var_dump($_POST);
             $username = $_POST["username"];
             $password =  $_POST["password"];
+
+            if(!empty($_POST["stayLogin"])){
+                $this->loginAuth->buildKeepLogin($username);
+            }
 
             $login = $this->loginAuth->checkLogin($username, $password);
        

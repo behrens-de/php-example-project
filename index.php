@@ -2,15 +2,13 @@
 session_start();
 require_once __DIR__ . '/init.php';
 # var_dump($_SESSION);
-
-
-var_dump(bin2hex(time().random_bytes(12)));
+#var_dump(bin2hex(time().random_bytes(12)));
 /**
  * Routing
  */
 $request = isset($_SERVER["PATH_INFO"]) ? $_SERVER["PATH_INFO"] : $_SERVER["REQUEST_URI"];
 // ------
-$router = $container->bulid('router');
+$router = $container->build('router');
 # Startseite
 if($request == '/php-example-project/'){
     $router->add('indexController', 'home');   
