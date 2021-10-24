@@ -16,6 +16,14 @@ class PhotoAlbenController extends AbstractController
     public function photoAlben()
     {
         var_dump($_POST);
+
+        if(!empty($_POST["send"])){
+            #neues Album anlegen
+            $albumName = $_POST["album-name"];
+            $albumBeschreibung = $_POST["album-beschreibung"];
+
+            $this->photoAlbenDatabase->createAlbum($albumName,$albumBeschreibung);
+        }
         $alben = $this->photoAlbenDatabase->getAlben();
         $this->pageload(
             'PhotoAlben/MVC/Views/',

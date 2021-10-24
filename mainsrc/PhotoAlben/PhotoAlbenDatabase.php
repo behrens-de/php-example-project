@@ -41,4 +41,15 @@ class PhotoAlbenDatabase extends AbstractDatabase
         $albendata = $alben->fetch(PDO::FETCH_CLASS);
         return $albendata;
     }
+
+    public function createAlbum($name,$beschreibung){
+        $table = $this->getTable();
+
+        $user = $this->pdo->prepare("INSERT INTO $table (`albumname`,`albumbeschreibung`,`albumcover`) VALUES (:name,:beschreibung,:albumcover)");
+        $user->execute([
+            'name' => $name,
+            'beschreibung' => $beschreibung,
+            'albumcover'=>'https://source.unsplash.com/320x180'
+        ]);
+    }
 }
