@@ -7,7 +7,7 @@ if (!$data) {
     #wenn ID nicht vorhanden
     Header("Location: /php-example-project/photoalben");
 }
-var_dump($_POST);
+var_dump($_FILES);
 ?>
 <div class="container my-5">
     <div class="ajaxSettingsForm">
@@ -25,11 +25,21 @@ var_dump($_POST);
             <label for="exampleFormControlTextarea1" class="my-3">Example textarea</label>
             <textarea class="form-control" id="exampleFormControlTextarea1" name="newDescription" rows="3"><?= $data['albumbeschreibung'] ?></textarea>
         </div>
-        <button name="send" type="submit" class="btn btn-success my-4">Update</button>
+    </form>
+
+    <button name="send" type="submit" class="btn btn-success my-4">Update</button>
+
+    <form method="post" enctype="multipart/form-data">
+        <h3>Coverbild ändern</h3>
+        <div class="form-group">
+            <input type="hidden" name="albumid" value="<?= $_GET["id"] ?>">
+            <input id="image-cover" class="form-control" name="imageCover" type="file" accept="image/*" />
+        </div>
+        <button name="send-image" type="submit" class="btn btn-success my-4">Update</button>
     </form>
 </div>
 
-<script src="<?= MAINURL.'/mainsrc/PhotoAlben/MVC/AjaxPhotoalben/AjaxAlbumSettings.js' ?>"></script>
+<script src="<?= MAINURL . '/mainsrc/PhotoAlben/MVC/AjaxPhotoalben/AjaxAlbumSettings.js' ?>"></script>
 
 <?php
 require_once __DIR__ . '/../../../App/Design/footer.php';
