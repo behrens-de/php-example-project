@@ -18,13 +18,15 @@ class PhotoAlbenDatabase extends AbstractDatabase
         return PhotoAlbenModel::class;
     }
 
-    public function getAlben()
+    public function getAlben($userid)
     {
         $table = $this->getTable();
         $model = $this->getModel();
 
-        $alben = $this->pdo->prepare("SELECT * FROM $table");
-        $alben->execute();
+        $alben = $this->pdo->prepare("SELECT * FROM $table WHERE `userid`=:userid");
+        $alben->execute([
+            'userid' => $userid
+        ]);
         $alben->setFetchMode(PDO::FETCH_CLASS, $model);
         $albendata = $alben->fetchAll(PDO::FETCH_CLASS);
         return $albendata;
@@ -42,14 +44,15 @@ class PhotoAlbenDatabase extends AbstractDatabase
         return $albendata;
     }
 
-    public function createAlbum($name,$beschreibung){
+    public function createAlbum($userid, $name,$beschreibung){
         $table = $this->getTable();
 
-        $user = $this->pdo->prepare("INSERT INTO $table (`albumname`,`albumbeschreibung`,`albumcover`) VALUES (:name,:beschreibung,:albumcover)");
+        $user = $this->pdo->prepare("INSERT INTO $table (`userid`,`albumname`,`albumbeschreibung`,`albumcover`) VALUES (:userid,:name,:beschreibung,:albumcover)");
         $user->execute([
             'name' => $name,
             'beschreibung' => $beschreibung,
-            'albumcover'=>'https://source.unsplash.com/320x180'
+            'albumcover'=>'https://source.unsplash.com/320x180',
+            'userid'=>$userid
         ]);
     }
 }

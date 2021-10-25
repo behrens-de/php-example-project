@@ -15,16 +15,9 @@ class PhotoAlbenController extends AbstractController
 
     public function photoAlben()
     {
-        var_dump($_POST);
-
-        if(!empty($_POST["send"])){
-            #neues Album anlegen
-            $albumName = $_POST["album-name"];
-            $albumBeschreibung = $_POST["album-beschreibung"];
-
-            $this->photoAlbenDatabase->createAlbum($albumName,$albumBeschreibung);
-        }
-        $alben = $this->photoAlbenDatabase->getAlben();
+        // var_dump($_POST);
+        // var_dump($_SESSION);
+        $alben = $this->photoAlbenDatabase->getAlben($_SESSION['userid']);
         $this->pageload(
             'PhotoAlben/MVC/Views/',
             'photoalbum.php',
@@ -36,7 +29,7 @@ class PhotoAlbenController extends AbstractController
 
     public function settings()
     {
-    
+
         $is_numeric = is_numeric($_GET["id"]);
 
         if ($is_numeric) {
@@ -48,9 +41,30 @@ class PhotoAlbenController extends AbstractController
                     'data' => $data
                 ]
             );
-        } else{
+        } else {
             #TODO: verbessern
             echo 'Eine ID kann keine Buchstaben enthalten!';
         }
+    }
+
+    public function AjaxNewAlbum()
+    {
+
+        #neues Album anlegen
+        $userid = $_POST["userid"];
+        $albumName = $_POST["albumName"];
+        $albumBeschreibung = $_POST["albumBeschreibung"];
+
+        $this->photoAlbenDatabase->createAlbum($userid, $albumName, $albumBeschreibung);
+    }
+
+    public function AjaxPage()
+    {
+        $alben = $this->photoAlbenDatabase->getAlben($_SESSION["userid"]);
+        $this->pageload(
+            'PhotoAlben/MVC/Views/',
+            'ajaxPhotoalben.php',
+            ['alben' => $alben]
+        );
     }
 }

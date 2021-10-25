@@ -50,6 +50,12 @@ elseif($request == '/photoalben/settings'){
     $router->add('photoAlbenController', 'settings');
 } 
 
+# User Photoalben Ajax
+elseif($request == '/photoalben-newAlbum'){
+    $router->add('photoAlbenController', 'AjaxNewAlbum');
+    $router->add('photoAlbenController', 'AjaxPage');
+} 
+
 # 404 Fehlerseite (Default)
 else {
     $router->add('errorController', 'error404');

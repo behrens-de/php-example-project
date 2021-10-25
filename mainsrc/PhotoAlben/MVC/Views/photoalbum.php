@@ -4,32 +4,19 @@ require_once __DIR__ . '/../../../App/Design/header.php';
 #var_dump($alben);
 ?>
 <div class="container my-5">
-    <h2>Coole Alben</h2>
-    <div class="row">
-        <?php foreach ($alben as $item) : ?>
-            <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 mb-4">
-                <div class="card mx-auto ">
-                    <img src="<?= $item->albumcover; ?>" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title text-primary"><?= $item->albumname; ?></h5>
-                        <p class="card-text"><?= $item->albumbeschreibung; ?></p>
-                        <a href="./users=user?uid=1" class="btn btn-outline-secondary">zum Album</a>
-                        <a href="./photoalben/settings?id=<?= $item->id; ?>" class="btn btn-outline-primary">Settings</a>
-                    </div>
-                </div>
-            </div>
-        <?php endforeach; ?>
-        <form method="post" class="col-xl-3 col-lg-4 col-md-6 col-sm-12 mb-4">
-            <div class="card">
-                <input type="hidden" name="album-name" value="Neues Album">
-                <input type="hidden" name="album-beschreibung" value="Ich bin eine cooles Album">
-                <button class="btn btn-outline-primary" value="send" name="send">Neues Album</button>
-            </div>
-        </form>
+    <h2>Coole Alben <button style="float: right;" class="btn btn-danger newAlbumAjaxBtn"
+    data-userid="<?= $_SESSION['userid']; ?>"
+    data-album-name="Neues Album"
+    data-album-beschreibung="Beispielbeschreibung"
+    >Neues Album</button></h2>
+    <div id="relPhotoalbum">
+        <?php require_once __DIR__.'/ajaxPhotoalben.php'; ?>
     </div>
 
 
+
 </div>
+<script src="<?= 'mainsrc/PhotoAlben/MVC/AjaxPhotoalben/AjaxNewAlbum.js' ?>"></script>
 
 <?php
 require_once __DIR__ . '/../../../App/Design/footer.php';
