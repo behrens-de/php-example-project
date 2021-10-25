@@ -16,8 +16,7 @@ require_once __DIR__ . '/../../../App/Design/header.php';
 
 
 </div>
-<script src="<?= 'mainsrc/PhotoAlben/MVC/AjaxPhotoalben/AjaxNewAlbum.js' ?>"></script>
-
+<script src="<?= MAINURL.'/mainsrc/PhotoAlben/MVC/AjaxPhotoalben/AjaxNewAlbum.js'?>"></script>
 <?php
 require_once __DIR__ . '/../../../App/Design/footer.php';
 ?>

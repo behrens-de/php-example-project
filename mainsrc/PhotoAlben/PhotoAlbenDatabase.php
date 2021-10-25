@@ -44,15 +44,31 @@ class PhotoAlbenDatabase extends AbstractDatabase
         return $albendata;
     }
 
-    public function createAlbum($userid, $name,$beschreibung){
+    public function createAlbum($userid, $name, $beschreibung)
+    {
         $table = $this->getTable();
 
         $user = $this->pdo->prepare("INSERT INTO $table (`userid`,`albumname`,`albumbeschreibung`,`albumcover`) VALUES (:userid,:name,:beschreibung,:albumcover)");
         $user->execute([
             'name' => $name,
             'beschreibung' => $beschreibung,
-            'albumcover'=>'https://source.unsplash.com/320x180',
-            'userid'=>$userid
+            'albumcover' => 'https://source.unsplash.com/320x180',
+            'userid' => $userid
+        ]);
+    }
+
+
+    public function updateAlbum($albumid, $name, $beschreibung)
+    {
+        $table = $this->getTable();
+        $user = $this->pdo->prepare("UPDATE $table SET 
+        `albumname` = :albumname, 
+        `albumbeschreibung`=:albumbeschreibung 
+        WHERE id = :albumid");
+        $user->execute([
+            'albumid' => $albumid,
+            'albumname' => $name,
+            'albumbeschreibung' => $beschreibung
         ]);
     }
 }

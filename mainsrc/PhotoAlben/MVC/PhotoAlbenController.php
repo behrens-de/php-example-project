@@ -36,7 +36,7 @@ class PhotoAlbenController extends AbstractController
             $data = $this->photoAlbenDatabase->getAlbenById($_GET["id"]);
             $this->pageload(
                 'PhotoAlben/MVC/Views/',
-                'singelalbum.php',
+                'settingsalbum.php',
                 [
                     'data' => $data
                 ]
@@ -65,6 +65,26 @@ class PhotoAlbenController extends AbstractController
             'PhotoAlben/MVC/Views/',
             'ajaxPhotoalben.php',
             ['alben' => $alben]
+        );
+    }
+
+    #updated the album informations
+    public function AjaxUpdateAlbum()
+    {
+        $albumid = $_POST["albumid"];
+        $albumName = $_POST["newName"];
+        $albumBeschreibung = $_POST["newDescription"];
+        $this->photoAlbenDatabase->updateAlbum($albumid, $albumName, $albumBeschreibung);
+    }
+
+    public function AjaxUpdateAlbumPage()
+    {   
+        $data["albumame"] = $_POST["newName"];
+
+        $this->pageload(
+            'PhotoAlben/MVC/Views/',
+            'ajaxSettingsForm.php',
+            ['albumname'=>$_POST["newName"]]
         );
     }
 }

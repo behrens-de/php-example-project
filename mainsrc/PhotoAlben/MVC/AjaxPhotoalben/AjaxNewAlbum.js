@@ -1,6 +1,5 @@
 $('.newAlbumAjaxBtn').click(function(e){
     e.preventDefault();
-
     //alert('TEST BTN');
 
     $.ajax({
