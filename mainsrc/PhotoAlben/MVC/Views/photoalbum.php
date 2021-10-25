@@ -9,6 +9,7 @@ require_once __DIR__ . '/../../../App/Design/header.php';
     data-album-name="Neues Album"
     data-album-beschreibung="Beispielbeschreibung"
     >Neues Album</button></h2>
+    
     <div id="relPhotoalbum">
         <?php require_once __DIR__.'/ajaxPhotoalben.php'; ?>
     </div>
